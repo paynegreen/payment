@@ -96,7 +96,7 @@ class PaymentController extends Controller
         $validedData['description'] = 'Payment for ticket to attend event';
         $validedData['payer_name'] = 'Africa Digital Rights Hub';
         $validedData['network_code'] = 'CRD';
-        $validedData['callback_url'] = 'https://api.dataprotectionafrica.org/callback';
+        $validedData['callback_url'] = 'https://payapp.dataprotectionafrica.org/api/callback';
         $validedData['client_id'] = $this->clientId;
 
         ksort($validedData);
