@@ -32,7 +32,7 @@ class PaymentController extends Controller
     public function index(Request $request)
     {
         if ($request->status === 'SUCCESS') {
-            $record = DB::table('signups_participant')->where('ref', $request->transaction_id)->update(['status' => 0]);
+            $record = DB::table('signups_participant')->where('ref', $request->transaction_id)->update(['status' => 1]);
 
             if ($record) {
                 $participant = DB::table('signups_participant')->where('ref', $request->transaction_id)->first();
