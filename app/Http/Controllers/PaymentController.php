@@ -38,13 +38,13 @@ class PaymentController extends Controller
                 $participant = DB::table('signups_participant')->where('ref', $request->transaction_id)->first();
                 $package = DB::table('core_packages')->where('identifier', $participant->package)->first();
 
-                return [
-                    'date' => date('d M Y'),
-                    'title' => $participant->title,
-                    'name' => $participant->lname,
-                    'package' => "{$package->name} USD{$package->price}",
-                    'code' => $participant->code
-                ];
+                // return [
+                //     'date' => date('d M Y'),
+                //     'title' => $participant->title,
+                //     'name' => $participant->lname,
+                //     'package' => "{$package->name} USD{$package->price}",
+                //     'code' => $participant->code
+                // ];
 
                 $mail = new Email();
 
@@ -92,11 +92,11 @@ class PaymentController extends Controller
 
 
         $validedData['transaction_id'] = $record->ref;
-        $validedData['amount'] = (float) $package->price;
+        $validedData['amount'] = ((float) $package->price) * 5.4;
         $validedData['description'] = 'Payment for ticket to attend event';
         $validedData['payer_name'] = 'Africa Digital Rights Hub';
         $validedData['network_code'] = 'CRD';
-        $validedData['callback_url'] = 'https://payapp.dataprotectionafrica.org/api/callback';
+        $validedData['callback_url'] = 'http://payapp.dataprotectionafrica.org/api/callback';
         $validedData['client_id'] = $this->clientId;
 
         ksort($validedData);
